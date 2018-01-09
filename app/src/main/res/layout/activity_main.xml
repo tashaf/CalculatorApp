@@ -165,10 +165,31 @@
         app:layout_constraintTop_toBottomOf="@+id/button4" />
 
     <Button
+        android:id="@+id/button_neg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:minHeight="48dp"
+        android:minWidth="48dp"
+        android:text="Neg"
+        app:layout_constraintStart_toStartOf="@+id/button_dot"
+        app:layout_constraintTop_toBottomOf="@+id/button_dot" />
+
+    <Button
+        android:id="@+id/button_clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:minHeight="48dp"
+        android:minWidth="48dp"
+        android:text="Clr"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button_neg"
+        app:layout_constraintStart_toEndOf="@+id/button_neg" />
+
+    <Button
         android:id="@+id/button_div"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:minHeight="48dp"
         android:minWidth="48dp"
@@ -231,7 +252,6 @@
         android:id="@+id/button_equal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:minHeight="48dp"
         android:minWidth="48dp"
