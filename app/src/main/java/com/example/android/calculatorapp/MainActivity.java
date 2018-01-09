@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     // Variable to hold operands and Type  of operations
 
     private Double operand1 = null;
-    private Double operand2 = null;
+
     private String pendingOperation = "=";
 
     public MainActivity() {
@@ -78,8 +78,11 @@ public class MainActivity extends AppCompatActivity {
                 Button b = (Button) v;
                 String op = b.getText().toString();
                 String value = newNumber.getText().toString();
-                if (value.length() != 0) {
-                    performOperation(value, op);
+                try {
+                    Double doubleValue = Double.valueOf(value);
+                    performOperation(doubleValue, op);
+                } catch (NumberFormatException e) {
+                    newNumber.setText("");
                 }
 
                 pendingOperation = op;
@@ -98,8 +101,50 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void performOperation(String value, String op) {
+    private void performOperation(Double value, String op) {
 
-        displayOperation.setText(op);
+        if (null == operand1) {
+            operand1 = value;
+        } else {
+
+            if (pendingOperation.equals("=")) {
+                pendingOperation = op;
+            }
+
+            switch (pendingOperation) {
+                case "=": {
+                    operand1 = value;
+
+                    break;
+                }
+                case "/": {
+                    if (value == 0) {
+                        operand1 = 0.0;
+                    } else {
+                        operand1 /= value;
+                    }
+                    break;
+                }
+
+                case "*": {
+                    operand1 *= value;
+                }
+                break;
+
+                case "-": {
+                    operand1 -= value;
+                }
+                break;
+
+                case "+": {
+                    operand1 += value;
+                }
+                break;
+            }
+        }
+
+
+        result.setText(operand1.toString());
+        newNumber.setText("");
     }
 }
