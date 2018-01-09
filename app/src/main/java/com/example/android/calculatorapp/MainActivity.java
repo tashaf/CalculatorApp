@@ -164,6 +164,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         displayOperation.setText(savedInstanceState.getString(STATE_PENDING_OPERATION));
-        operand1 = savedInstanceState.getDouble(STATE_PENDING_OPERATION);
+        operand1 = savedInstanceState.getDouble(STATE_OPERAND_1);
     }
 }
