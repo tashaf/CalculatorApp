@@ -9,14 +9,14 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String STATE_PENDING_OPERATION = "pendingOperation";
+    public static final String STATE_OPERAND_1 = "operand1";
     private EditText result;
-    private EditText newNumber;
-    private TextView displayOperation;
 
     // Variable to hold operands and Type  of operations
-
+    private EditText newNumber;
+    private TextView displayOperation;
     private Double operand1 = null;
-
     private String pendingOperation = "=";
 
     public MainActivity() {
@@ -146,5 +146,24 @@ public class MainActivity extends AppCompatActivity {
 
         result.setText(operand1.toString());
         newNumber.setText("");
+    }
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(STATE_PENDING_OPERATION, displayOperation.getText().toString());
+
+        if (operand1 != null) {
+            outState.putDouble(STATE_OPERAND_1, operand1);
+        }
+
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        displayOperation.setText(savedInstanceState.getString(STATE_PENDING_OPERATION));
+        operand1 = savedInstanceState.getDouble(STATE_PENDING_OPERATION);
     }
 }
